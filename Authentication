@@ -1,0 +1,83 @@
+import { StyleSheet, Text, View, ScrollView, Button, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+const SignIN = () => {
+  const [form, setForm] = useState({
+    email: '',
+    password: ''
+  });
+
+  // Dummy sign-in function
+  const handleSignIn = () => {
+    // Add your sign-in logic here
+    console.log('Signing in with:', form.email, form.password);
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <ScrollView>
+        <View style={styles.formContainer}>
+          <Text style={styles.title}>Log in to CropSmart</Text>
+
+          {/* Email Input */}
+          <TextInput
+            placeholder="Email"
+            value={form.email}
+            onChangeText={(email) => setForm({ ...form, email })}
+            style={[styles.inputField, styles.inputMargin]}
+            keyboardType="email-address"
+          />
+
+          {/* Password Input */}
+          <TextInput
+            placeholder="Password"
+            value={form.password}
+            onChangeText={(password) => setForm({ ...form, password })}
+            style={[styles.inputField, styles.inputMargin]}
+            secureTextEntry={true}
+          />
+
+          {/* Sign In Button */}
+          <Button
+            title="Sign In"
+            onPress={handleSignIn}
+            color="#4CAF50" // Custom color for button
+          />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+export default SignIN;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#2E8B57', // Changed to a custom color (primary)
+  },
+  formContainer: {
+    width: '100%',
+    justifyContent: 'center',
+    height: '85%',
+    paddingHorizontal: 16,
+    marginVertical: 16,
+  },
+  title: {
+    fontSize: 24,
+    color: '#FFF',
+    fontWeight: '600',
+    marginTop: 40,
+    textAlign: 'center',
+  },
+  inputField: {
+    backgroundColor: '#FFF',
+    padding: 12,
+    borderRadius: 8,
+    fontSize: 16,
+  },
+  inputMargin: {
+    marginTop: 20,
+  },
+});
